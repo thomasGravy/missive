@@ -2,7 +2,7 @@
 
 A free, newsletter-first theme for [Ghost](https://ghost.org), with an editorial, letter-like feel.
 
-**[Live demo](https://thomasgravy.github.io/missive/)** · **[Download the latest release](https://github.com/thomasGravy/missive/releases/latest)**
+**[Live demo](https://thomasgravy.github.io/missive/)** · **[Download missive.zip](https://thomasgravy.github.io/missive/missive.zip)**
 
 Missive is built for people who write a newsletter first and a website second: a big signup form up top, your latest issue front and centre, and every past issue one click away.
 
@@ -22,7 +22,7 @@ Missive is built for people who write a newsletter first and a website second: a
 
 ## Installation
 
-1. Download `missive.zip` from the [latest release](https://github.com/thomasGravy/missive/releases/latest).
+1. Download [`missive.zip`](https://thomasgravy.github.io/missive/missive.zip).
 2. In Ghost Admin, go to **Settings → Design & branding → Change theme → Upload theme**.
 3. Upload the zip and click **Activate**.
 
