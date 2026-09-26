@@ -10,7 +10,7 @@
     --card: color-mix(in srgb, var(--paper) 55%, #ffffff);
     --ink: #1c1a16;
     --ink-soft: #4a463e;
-    --ink-muted: #7b7569;
+    --ink-muted: #6e685d;
     --rule: rgba(28, 26, 22, 0.12);
     --rule-strong: rgba(28, 26, 22, 0.24);
     --danger: #b3261e;
