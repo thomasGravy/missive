@@ -5,6 +5,9 @@
                 <span class="m-kicker__accent">{{t "Latest issue"}}</span>
                 <span class="m-kicker__no" data-issue-no></span>
                 <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMMM YYYY"}}</time>
+                {{#if featured}}
+                    <span class="m-featured">{{> "icons/star"}}<span>{{t "Featured"}}</span></span>
+                {{/if}}
             </p>
             <h2 class="m-latest__title"><a href="{{url}}">{{title}}</a></h2>
             <p class="m-latest__excerpt">{{excerpt words="55"}}</p>

@@ -3,7 +3,10 @@
     <a class="m-issue__link" href="{{url}}">
         <span class="m-issue__no" data-issue-no aria-hidden="true"></span>
         <span class="m-issue__body">
-            <span class="m-issue__title">{{title}}</span>
+            <span class="m-issue__title">
+                {{#if featured}}<span class="m-featured">{{> "icons/star"}}<span>{{t "Featured"}}</span></span>{{/if}}
+                {{title}}
+            </span>
             <span class="m-issue__excerpt">{{excerpt words="26"}}</span>
         </span>
         <span class="m-issue__meta">

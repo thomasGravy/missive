@@ -17,6 +17,9 @@
                 {{#if reading_time}}
                     <span>{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
                 {{/if}}
+                {{#if featured}}
+                    <span class="m-featured">{{> "icons/star"}}<span>{{t "Featured"}}</span></span>
+                {{/if}}
             </p>
 
             <h1 class="m-article__title">{{title}}</h1>
@@ -74,6 +77,13 @@
                     {{/primary_author}}
                 </footer>
             {{/if}}
+        {{/if}}
+
+        {{#if tags}}
+            <p class="m-article__tags m-wrap m-wrap--text">
+                <span>{{t "Filed under"}}</span>
+                {{#foreach tags}}<a class="m-tag" href="{{url}}">{{name}}</a>{{/foreach}}
+            </p>
         {{/if}}
 
     </article>
