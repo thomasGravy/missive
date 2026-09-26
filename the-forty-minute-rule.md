@@ -5,7 +5,7 @@
 # The forty-minute rule
 - URL: https://thomasgravy.github.io/missive/the-forty-minute-rule/
 - Published: 2026-08-09T07:30:00.000Z
-- Updated: 2026-09-26T21:46:55.000Z
+- Updated: 2026-09-26T22:12:16.000Z
 - Description: Why I stopped planning my days in hours and started planning them in forty-minute blocks.
 - Author: Clara Moreau
 - Tags: Studio
