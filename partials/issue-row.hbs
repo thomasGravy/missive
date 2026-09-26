@@ -1,0 +1,20 @@
+{{!-- One issue in a list. Issue numbers are filled in by main.js inside [data-numbered] lists. --}}
+<article class="m-issue {{post_class}}" data-issue>
+    <a class="m-issue__link" href="{{url}}">
+        <span class="m-issue__no" data-issue-no aria-hidden="true"></span>
+        <span class="m-issue__body">
+            <span class="m-issue__title">{{title}}</span>
+            <span class="m-issue__excerpt">{{excerpt words="26"}}</span>
+        </span>
+        <span class="m-issue__meta">
+            {{#match visibility "members"}}
+                <span class="m-badge" title="{{t "Members only"}}">{{> "icons/lock"}}<span class="m-sr-only">{{t "Members only"}}</span></span>
+            {{else}}
+                {{#match visibility "!=" "public"}}
+                    <span class="m-badge m-badge--paid" title="{{t "Paid subscribers"}}">{{> "icons/star"}}<span class="m-sr-only">{{t "Paid subscribers"}}</span></span>
+                {{/match}}
+            {{/match}}
+            <time class="m-issue__date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+        </span>
+    </a>
+</article>

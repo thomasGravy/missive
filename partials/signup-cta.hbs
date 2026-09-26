@@ -1,0 +1,30 @@
+{{#if @site.members_enabled}}
+    {{#unless @member}}
+        {{#unless @site.members_invite_only}}
+            <section class="m-cta">
+                <div class="m-cta__inner m-wrap m-wrap--narrow">
+                    <span class="m-cta__icon">{{> "icons/mail"}}</span>
+                    <h2 class="m-cta__title">
+                        {{#if @custom.footer_heading}}{{@custom.footer_heading}}{{else}}{{t "Get the next issue in your inbox"}}{{/if}}
+                    </h2>
+                    <p class="m-cta__text">
+                        {{#if @custom.footer_text}}{{@custom.footer_text}}{{else}}{{@site.description}}{{/if}}
+                    </p>
+                    {{> "subscribe-form" id="footer-email"}}
+                </div>
+            </section>
+        {{/unless}}
+    {{else}}
+        {{#if @site.paid_members_enabled}}
+            {{#unless @member.paid}}
+                <section class="m-cta m-cta--upgrade">
+                    <div class="m-cta__inner m-wrap m-wrap--narrow">
+                        <h2 class="m-cta__title">{{t "Enjoying the letters?"}}</h2>
+                        <p class="m-cta__text">{{t "Become a paying subscriber to support the work and unlock every issue."}}</p>
+                        <a class="m-button" href="#/portal/account/plans" data-portal="account/plans">{{t "Upgrade"}}</a>
+                    </div>
+                </section>
+            {{/unless}}
+        {{/if}}
+    {{/unless}}
+{{/if}}

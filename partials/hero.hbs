@@ -1,0 +1,62 @@
+<section class="m-hero">
+    <div class="m-hero__inner m-wrap">
+
+        <div class="m-hero__content">
+            {{#if @custom.show_hero_author}}
+                {{#get "authors" limit="3" as |writers|}}
+                    {{#if writers}}
+                        <div class="m-hero__byline">
+                            <span class="m-avatars">
+                                {{#foreach writers}}
+                                    {{#if profile_image}}
+                                        <img class="m-avatar" src="{{img_url profile_image size="xs"}}" alt="" width="36" height="36">
+                                    {{else}}
+                                        <span class="m-avatar m-avatar--blank" aria-hidden="true"></span>
+                                    {{/if}}
+                                {{/foreach}}
+                            </span>
+                            <span class="m-hero__byline-text">
+                                {{t "Written by"}}
+                                {{#foreach writers}}<a href="{{url}}">{{name}}</a>{{#unless @last}}, {{/unless}}{{/foreach}}
+                            </span>
+                        </div>
+                    {{/if}}
+                {{/get}}
+            {{/if}}
+
+            <h1 class="m-hero__title">
+                {{#if @custom.hero_heading}}{{@custom.hero_heading}}{{else}}{{@site.title}}{{/if}}
+            </h1>
+
+            {{#if @custom.hero_text}}
+                <p class="m-hero__text">{{@custom.hero_text}}</p>
+            {{else if @site.description}}
+                <p class="m-hero__text">{{@site.description}}</p>
+            {{/if}}
+
+            {{#if @site.members_enabled}}
+                {{#unless @member}}
+                    {{#unless @site.members_invite_only}}
+                        {{> "subscribe-form" id="hero-email" size="large"}}
+                    {{else}}
+                        <a class="m-button" href="#/portal/signin" data-portal="signin">{{t "Sign in"}}</a>
+                    {{/unless}}
+                {{else}}
+                    <p class="m-hero__subscribed">
+                        {{> "icons/check"}}
+                        <span>{{t "You're subscribed."}} <a href="#/portal/account" data-portal="account">{{t "Manage your subscription"}}</a></span>
+                    </p>
+                {{/unless}}
+            {{/if}}
+
+            {{#if @custom.hero_note}}
+                <p class="m-hero__note">{{@custom.hero_note}}</p>
+            {{/if}}
+        </div>
+
+        {{#if @custom.show_postmark}}
+            {{> "postmark" total=total}}
+        {{/if}}
+
+    </div>
+</section>

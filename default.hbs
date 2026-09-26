@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}" class="scheme-{{#match @custom.color_scheme "Dark"}}dark{{else match @custom.color_scheme "Auto"}}auto{{else}}light{{/match}}">
+<head>
+    <title>{{meta_title page=(t " (Page %)")}}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {{> "fonts"}}
+
+    <link rel="stylesheet" type="text/css" href="{{asset "css/screen.css"}}">
+
+    <style>
+        :root { --paper-custom: {{@custom.paper_color}}; }
+    </style>
+
+    {{!-- Pick a readable text color for buttons filled with the brand accent color --}}
+    <script>
+        (function () {
+            var hex = '{{@site.accent_color}}'.replace('#', '');
+            if (hex.length === 3) hex = hex.replace(/(.)/g, '$1$1');
+            if (hex.length !== 6) return;
+            var r = parseInt(hex.substr(0, 2), 16);
+            var g = parseInt(hex.substr(2, 2), 16);
+            var b = parseInt(hex.substr(4, 2), 16);
+            var yiq = (r * 299 + g * 587 + b * 114) / 1000;
+            document.documentElement.classList.add(yiq >= 150 ? 'accent-is-light' : 'accent-is-dark');
+        })();
+    </script>
+
+    {{ghost_head}}
+</head>
+<body class="{{body_class}} type-{{#match @custom.typography "Sans"}}sans{{else match @custom.typography "Serif titles, sans body"}}mixed{{else}}serif{{/match}}">
+
+    <a class="m-skip" href="#main">{{t "Skip to content"}}</a>
+
+    <div class="m-site">
+        {{> "site-header"}}
+
+        <div id="main" class="m-main">
+            {{{body}}}
+        </div>
+
+        {{> "site-footer"}}
+    </div>
+
+    <script src="{{asset "js/main.js"}}" defer></script>
+
+    {{ghost_foot}}
+</body>
+</html>

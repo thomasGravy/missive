@@ -1,0 +1,106 @@
+{{!< default}}
+
+{{#post}}
+<main class="m-post">
+    <article class="m-article {{post_class}}">
+
+        <header class="m-article__header m-wrap m-wrap--text">
+            <p class="m-kicker">
+                {{#if @custom.show_issue_numbers}}
+                    {{#get "posts" filter="published_at:<='{{published_at}}'" limit="1" fields="id" as |issues pages|}}
+                        <span class="m-kicker__accent">{{@custom.issue_label}} {{pages.total}}</span>
+                    {{/get}}
+                {{else if primary_tag}}
+                    <a class="m-kicker__accent" href="{{primary_tag.url}}">{{primary_tag.name}}</a>
+                {{/if}}
+                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMMM YYYY"}}</time>
+                {{#if reading_time}}
+                    <span>{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
+                {{/if}}
+            </p>
+
+            <h1 class="m-article__title">{{title}}</h1>
+
+            {{#if custom_excerpt}}
+                <p class="m-article__dek">{{custom_excerpt}}</p>
+            {{/if}}
+
+            <div class="m-article__byline">
+                <span class="m-avatars">
+                    {{#foreach authors}}
+                        {{#if profile_image}}
+                            <img class="m-avatar" src="{{img_url profile_image size="xs"}}" alt="" width="36" height="36">
+                        {{else}}
+                            <span class="m-avatar m-avatar--blank" aria-hidden="true"></span>
+                        {{/if}}
+                    {{/foreach}}
+                </span>
+                <span class="m-article__authors">{{t "By"}} {{authors}}</span>
+                <button class="m-share" type="button" data-share data-title="{{title}}" data-url="{{url absolute="true"}}">
+                    <span data-share-label>{{t "Share"}}</span>
+                    <span class="m-share__done" data-share-done hidden>{{t "Link copied"}}</span>
+                </button>
+            </div>
+        </header>
+
+        {{#if feature_image}}
+            <figure class="m-article__image m-wrap m-wrap--wide">
+                <img
+                    srcset="{{img_url feature_image size="s"}} 320w,
+                            {{img_url feature_image size="m"}} 720w,
+                            {{img_url feature_image size="l"}} 1080w,
+                            {{img_url feature_image size="xl"}} 1600w"
+                    sizes="(max-width: 1100px) 100vw, 1040px"
+                    src="{{img_url feature_image size="l"}}"
+                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                >
+                {{#if feature_image_caption}}
+                    <figcaption>{{feature_image_caption}}</figcaption>
+                {{/if}}
+            </figure>
+        {{/if}}
+
+        <section class="gh-content m-content{{#if @custom.enable_drop_cap}} has-drop-cap{{/if}}" data-content>
+            {{content}}
+        </section>
+
+        {{#if @custom.show_signature}}
+            {{#if access}}
+                <footer class="m-signature m-wrap m-wrap--text">
+                    {{#primary_author}}
+                        <span class="m-signature__dash" aria-hidden="true">&mdash;</span>
+                        <span class="m-signature__name">{{name}}</span>
+                        {{#if bio}}<span class="m-signature__bio">{{bio}}</span>{{/if}}
+                    {{/primary_author}}
+                </footer>
+            {{/if}}
+        {{/if}}
+
+    </article>
+
+    {{#if @custom.show_previous_next}}
+        <nav class="m-post-nav m-wrap m-wrap--text" aria-label="{{t "More issues"}}">
+            {{#prev_post}}
+                <a class="m-post-nav__link m-post-nav__link--prev" href="{{url}}">
+                    <span class="m-post-nav__label">{{> "icons/arrow-left"}} {{t "Previous issue"}}</span>
+                    <span class="m-post-nav__title">{{title}}</span>
+                </a>
+            {{/prev_post}}
+            {{#next_post}}
+                <a class="m-post-nav__link m-post-nav__link--next" href="{{url}}">
+                    <span class="m-post-nav__label">{{t "Next issue"}} {{> "icons/arrow-right"}}</span>
+                    <span class="m-post-nav__title">{{title}}</span>
+                </a>
+            {{/next_post}}
+        </nav>
+    {{/if}}
+
+    {{#if comments}}
+        <section class="m-comments m-wrap m-wrap--text">
+            {{comments}}
+        </section>
+    {{/if}}
+</main>
+{{/post}}
+
+{{> "signup-cta"}}

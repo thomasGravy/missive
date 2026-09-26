@@ -1,0 +1,56 @@
+{{!< default}}
+
+<main class="m-home"{{#if @custom.show_issue_numbers}} data-numbered data-total="{{pagination.total}}" data-page="{{pagination.page}}" data-limit="{{pagination.limit}}" data-label="{{@custom.issue_label}}"{{/if}}>
+
+    {{#is "home"}}
+        {{> "hero" total=pagination.total}}
+
+        {{#if @custom.feature_latest_issue}}
+            {{#foreach posts limit="1"}}
+                {{> "latest-issue"}}
+            {{/foreach}}
+        {{/if}}
+    {{/is}}
+
+    <section class="m-archive m-wrap">
+        <header class="m-section-head">
+            <h2 class="m-section-head__title">
+                {{#is "home"}}{{#if @custom.feature_latest_issue}}{{t "Past issues"}}{{else}}{{t "Issues"}}{{/if}}{{else}}{{t "Issues"}}{{/is}}
+            </h2>
+            {{#is "paged"}}
+                <span class="m-section-head__meta">{{t "Page {page} of {pages}" page=pagination.page pages=pagination.pages}}</span>
+            {{/is}}
+        </header>
+
+        <div class="m-list" data-feed>
+            {{#is "home"}}
+                {{#if @custom.feature_latest_issue}}
+                    {{#foreach posts from="2"}}{{> "issue-row"}}{{/foreach}}
+                {{else}}
+                    {{#foreach posts}}{{> "issue-row"}}{{/foreach}}
+                {{/if}}
+            {{else}}
+                {{#foreach posts}}{{> "issue-row"}}{{/foreach}}
+            {{/is}}
+        </div>
+
+        {{> "load-more"}}
+    </section>
+
+    {{#is "home"}}
+        {{#if @custom.show_recommendations}}
+            {{#if @site.recommendations_enabled}}
+                <section class="m-recs m-wrap">
+                    <header class="m-section-head">
+                        <h2 class="m-section-head__title">{{t "Newsletters I read"}}</h2>
+                        <button class="m-link-arrow" type="button" data-portal="recommendations">{{t "See all"}} {{> "icons/arrow-right"}}</button>
+                    </header>
+                    {{recommendations}}
+                </section>
+            {{/if}}
+        {{/if}}
+    {{/is}}
+
+</main>
+
+{{> "signup-cta"}}

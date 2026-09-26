@@ -1,0 +1,163 @@
+{
+    "name": "missive",
+    "description": "A newsletter-first Ghost theme with an editorial, letter-like feel.",
+    "version": "1.0.0",
+    "license": "MIT",
+    "author": {
+        "name": "thomasGravy",
+        "email": "thomasGravy@users.noreply.github.com",
+        "url": "https://github.com/thomasGravy"
+    },
+    "demo": "https://thomasgravy.github.io/missive/",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thomasGravy/missive.git"
+    },
+    "engines": {
+        "ghost": ">=5.0.0"
+    },
+    "keywords": [
+        "ghost",
+        "theme",
+        "ghost-theme",
+        "newsletter"
+    ],
+    "config": {
+        "posts_per_page": 15,
+        "image_sizes": {
+            "xs": {
+                "width": 160
+            },
+            "s": {
+                "width": 320
+            },
+            "m": {
+                "width": 720
+            },
+            "l": {
+                "width": 1080
+            },
+            "xl": {
+                "width": 1600
+            },
+            "xxl": {
+                "width": 2400
+            }
+        },
+        "card_assets": true,
+        "custom": {
+            "color_scheme": {
+                "type": "select",
+                "options": [
+                    "Light",
+                    "Dark",
+                    "Auto"
+                ],
+                "default": "Light",
+                "description": "Auto follows the reader's system setting"
+            },
+            "paper_color": {
+                "type": "color",
+                "default": "#faf7f0",
+                "description": "Background color in light mode"
+            },
+            "typography": {
+                "type": "select",
+                "options": [
+                    "Serif",
+                    "Serif titles, sans body",
+                    "Sans"
+                ],
+                "default": "Serif"
+            },
+            "show_issue_numbers": {
+                "type": "boolean",
+                "default": true,
+                "description": "Numbers every post like a newsletter issue"
+            },
+            "issue_label": {
+                "type": "text",
+                "default": "No.",
+                "description": "Shown before the issue number, e.g. No., Issue, N°, #",
+                "visibility": "show_issue_numbers:true"
+            },
+            "subscribe_button_text": {
+                "type": "text",
+                "description": "Defaults to \"Subscribe\""
+            },
+            "footer_heading": {
+                "type": "text",
+                "description": "Signup box at the end of each page. Defaults to \"Get the next issue in your inbox\""
+            },
+            "footer_text": {
+                "type": "text",
+                "description": "Defaults to your site description"
+            },
+            "hero_heading": {
+                "type": "text",
+                "group": "homepage",
+                "description": "Defaults to your site title"
+            },
+            "hero_text": {
+                "type": "text",
+                "group": "homepage",
+                "description": "Defaults to your site description"
+            },
+            "hero_note": {
+                "type": "text",
+                "group": "homepage",
+                "description": "Small line under the signup form, e.g. \"Free, every Sunday. Unsubscribe anytime.\""
+            },
+            "show_hero_author": {
+                "type": "boolean",
+                "default": true,
+                "group": "homepage",
+                "description": "Shows who writes the newsletter"
+            },
+            "show_postmark": {
+                "type": "boolean",
+                "default": true,
+                "group": "homepage",
+                "description": "Decorative postmark with your issue count"
+            },
+            "feature_latest_issue": {
+                "type": "boolean",
+                "default": true,
+                "group": "homepage"
+            },
+            "show_recommendations": {
+                "type": "boolean",
+                "default": true,
+                "group": "homepage",
+                "description": "Lists the newsletters you recommend, when recommendations are enabled"
+            },
+            "show_signature": {
+                "type": "boolean",
+                "default": true,
+                "group": "post",
+                "description": "Signs each issue with the author's name, like a letter"
+            },
+            "show_reading_progress": {
+                "type": "boolean",
+                "default": true,
+                "group": "post"
+            },
+            "enable_drop_cap": {
+                "type": "boolean",
+                "default": false,
+                "group": "post"
+            },
+            "show_previous_next": {
+                "type": "boolean",
+                "default": true,
+                "group": "post",
+                "description": "Links to the previous and next issues"
+            },
+            "show_theme_credit": {
+                "type": "boolean",
+                "default": true,
+                "description": "Small \"Published with Ghost · Missive theme\" credit in the footer"
+            }
+        }
+    }
+}

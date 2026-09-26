@@ -1,0 +1,35 @@
+{{!< default}}
+{{!-- Page template "Archive": every issue on one page, grouped by year --}}
+
+{{#post}}
+<main class="m-listing m-archive-page">
+    <header class="m-listing__header m-wrap">
+        <p class="m-kicker"><span class="m-kicker__accent">{{t "Archive"}}</span></p>
+        <h1 class="m-listing__title">{{title}}</h1>
+        {{#if custom_excerpt}}
+            <p class="m-listing__text">{{custom_excerpt}}</p>
+        {{/if}}
+    </header>
+
+    {{#if html}}
+        <section class="gh-content m-content">
+            {{content}}
+        </section>
+    {{/if}}
+
+    {{#get "posts" limit="100" include="tags" as |issues pages|}}
+        <section class="m-archive m-wrap"{{#if @custom.show_issue_numbers}} data-numbered data-total="{{pages.total}}" data-page="1" data-limit="100" data-label="{{@custom.issue_label}}"{{/if}}>
+            <div class="m-list m-list--grouped" data-group-by-year>
+                {{#foreach issues}}
+                    <div class="m-list__item" data-year="{{date published_at format="YYYY"}}">{{> "issue-row"}}</div>
+                {{/foreach}}
+            </div>
+            {{#match pages.pages ">" 1}}
+                <p class="m-archive__note">{{t "Showing the latest 100 issues."}}</p>
+            {{/match}}
+        </section>
+    {{/get}}
+</main>
+{{/post}}
+
+{{> "signup-cta"}}

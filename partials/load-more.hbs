@@ -1,0 +1,8 @@
+{{#if pagination.next}}
+    <div class="m-loadmore">
+        <a class="m-button m-button--ghost" href="{{page_url pagination.next}}" data-loadmore>
+            <span>{{t "Load more issues"}}</span>
+            {{> "icons/arrow-down"}}
+        </a>
+    </div>
+{{/if}}

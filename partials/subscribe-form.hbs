@@ -1,0 +1,13 @@
+{{!-- Usage: {{> "subscribe-form" id="hero-email" size="large"}} --}}
+<form class="m-form{{#if size}} m-form--{{size}}{{/if}}" data-members-form="subscribe">
+    <div class="m-form__row">
+        <label class="m-sr-only" for="{{id}}">{{t "Your email address"}}</label>
+        <input class="m-form__input" id="{{id}}" name="email" type="email" autocomplete="email" placeholder="{{t "you@example.com"}}" required data-members-email>
+        <button class="m-button m-form__button" type="submit">
+            <span class="m-form__label">{{> "subscribe-label"}}</span>
+            <span class="m-form__loading" aria-hidden="true"></span>
+        </button>
+    </div>
+    <p class="m-form__message m-form__message--success" role="status">{{> "icons/check"}} {{t "Check your inbox to confirm your subscription."}}</p>
+    <p class="m-form__message m-form__message--error" role="alert" data-members-error></p>
+</form>

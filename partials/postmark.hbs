@@ -1,0 +1,21 @@
+{{!-- Decorative postmark stamp showing the total number of issues --}}
+<div class="m-postmark" aria-hidden="true">
+    <svg viewBox="0 0 220 160" width="220" height="160" focusable="false">
+        <defs>
+            <path id="m-postmark-ring" d="M 140,80 m -53,0 a 53,53 0 1,1 106,0 a 53,53 0 1,1 -106,0"/>
+        </defs>
+        <g fill="none" stroke="currentColor" stroke-linecap="round">
+            <path stroke-width="2" d="M2 58q7-5 14 0t14 0 14 0 14 0 14 0"/>
+            <path stroke-width="2" d="M2 71q7-5 14 0t14 0 14 0 14 0 14 0"/>
+            <path stroke-width="2" d="M2 84q7-5 14 0t14 0 14 0 14 0 14 0"/>
+            <path stroke-width="2" d="M2 97q7-5 14 0t14 0 14 0 14 0 14 0"/>
+            <circle cx="140" cy="80" r="66" stroke-width="2.5"/>
+            <circle cx="140" cy="80" r="41" stroke-width="1.25"/>
+        </g>
+        <text class="m-postmark__ring" fill="currentColor">
+            <textPath href="#m-postmark-ring" textLength="326" lengthAdjust="spacing">{{@site.title}} &#10022; {{@site.title}} &#10022;</textPath>
+        </text>
+        <text class="m-postmark__count" x="140" y="86" text-anchor="middle" fill="currentColor">{{total}}</text>
+        <text class="m-postmark__label" x="140" y="103" text-anchor="middle" fill="currentColor">{{t "issues"}}</text>
+    </svg>
+</div>

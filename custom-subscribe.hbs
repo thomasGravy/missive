@@ -1,0 +1,83 @@
+{{!< default}}
+{{!-- Page template "Subscribe": your membership tiers as pricing cards, then the page content (FAQ, etc.) --}}
+
+{{#post}}
+<main class="m-subscribe">
+    <header class="m-listing__header m-wrap m-subscribe__header">
+        <p class="m-kicker"><span class="m-kicker__accent">{{t "Subscribe"}}</span></p>
+        <h1 class="m-listing__title">{{title}}</h1>
+        {{#if custom_excerpt}}
+            <p class="m-listing__text">{{custom_excerpt}}</p>
+        {{/if}}
+    </header>
+
+    {{#if @site.members_enabled}}
+        {{#get "tiers" include="monthly_price,yearly_price,benefits" limit="100" as |tiers|}}
+            <section class="m-plans m-wrap" data-plans>
+                {{#if @site.paid_members_enabled}}
+                    <div class="m-cadence" role="group" aria-label="{{t "Billing period"}}">
+                        <button class="m-cadence__option" type="button" data-cadence-switch="monthly" aria-pressed="true">{{t "Monthly"}}</button>
+                        <button class="m-cadence__option" type="button" data-cadence-switch="yearly" aria-pressed="false">{{t "Yearly"}}</button>
+                    </div>
+                {{/if}}
+
+                <div class="m-plans__grid">
+                    {{#foreach tiers}}
+                        <article class="m-plan{{#match type "free"}} m-plan--free{{else}} m-plan--paid{{/match}}">
+                            <h2 class="m-plan__name">{{name}}</h2>
+
+                            <p class="m-plan__price">
+                                {{#match type "free"}}
+                                    <span class="m-plan__amount">{{t "Free"}}</span>
+                                {{else}}
+                                    <span data-cadence="monthly">
+                                        <span class="m-plan__amount">{{price monthly_price currency=currency}}</span>
+                                        <span class="m-plan__period">/ {{t "month"}}</span>
+                                    </span>
+                                    <span data-cadence="yearly" hidden>
+                                        <span class="m-plan__amount">{{price yearly_price currency=currency}}</span>
+                                        <span class="m-plan__period">/ {{t "year"}}</span>
+                                    </span>
+                                {{/match}}
+                            </p>
+
+                            {{#if description}}
+                                <p class="m-plan__description">{{description}}</p>
+                            {{/if}}
+
+                            {{#if benefits}}
+                                <ul class="m-plan__benefits">
+                                    {{#foreach benefits}}
+                                        <li>{{> "icons/check"}} <span>{{this}}</span></li>
+                                    {{/foreach}}
+                                </ul>
+                            {{/if}}
+
+                            <div class="m-plan__action">
+                                {{#if @member}}
+                                    <a class="m-button m-button--ghost" href="#/portal/account/plans" data-portal="account/plans">{{t "Manage your subscription"}}</a>
+                                {{else}}
+                                    {{#match type "free"}}
+                                        <a class="m-button m-button--ghost" href="#/portal/signup/free" data-portal="signup/free">{{t "Subscribe for free"}}</a>
+                                    {{else}}
+                                        <a class="m-button" href="#/portal/signup/{{id}}/monthly" data-portal="signup/{{id}}/monthly" data-tier-button data-tier="{{id}}">{{t "Choose"}} {{name}}</a>
+                                        {{#if trial_days}}
+                                            <p class="m-plan__trial">{{t "{days}-day free trial" days=trial_days}}</p>
+                                        {{/if}}
+                                    {{/match}}
+                                {{/if}}
+                            </div>
+                        </article>
+                    {{/foreach}}
+                </div>
+            </section>
+        {{/get}}
+    {{/if}}
+
+    {{#if html}}
+        <section class="gh-content m-content m-subscribe__content">
+            {{content}}
+        </section>
+    {{/if}}
+</main>
+{{/post}}

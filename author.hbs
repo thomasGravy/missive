@@ -1,0 +1,30 @@
+{{!< default}}
+
+<main class="m-listing">
+    {{#author}}
+        <header class="m-listing__header m-listing__header--author m-wrap">
+            {{#if profile_image}}
+                <img class="m-avatar m-avatar--large" src="{{img_url profile_image size="s"}}" alt="{{name}}" width="96" height="96">
+            {{/if}}
+            <h1 class="m-listing__title">{{name}}</h1>
+            {{#if bio}}
+                <p class="m-listing__text">{{bio}}</p>
+            {{/if}}
+            <p class="m-listing__links">
+                {{#if location}}<span>{{location}}</span>{{/if}}
+                {{#if website}}<a href="{{website}}" target="_blank" rel="noopener">{{t "Website"}}</a>{{/if}}
+                {{#if twitter}}<a href="{{social_url type="twitter"}}" target="_blank" rel="noopener">X</a>{{/if}}
+                {{#if facebook}}<a href="{{social_url type="facebook"}}" target="_blank" rel="noopener">Facebook</a>{{/if}}
+            </p>
+        </header>
+    {{/author}}
+
+    <section class="m-archive m-wrap">
+        <div class="m-list" data-feed>
+            {{#foreach posts}}{{> "issue-row"}}{{/foreach}}
+        </div>
+        {{> "load-more"}}
+    </section>
+</main>
+
+{{> "signup-cta"}}

@@ -1,0 +1,23 @@
+{{!< default}}
+
+<main class="m-listing">
+    {{#tag}}
+        <header class="m-listing__header m-wrap">
+            <p class="m-kicker"><span class="m-kicker__accent">{{t "Topic"}}</span></p>
+            <h1 class="m-listing__title">{{name}}</h1>
+            {{#if description}}
+                <p class="m-listing__text">{{description}}</p>
+            {{/if}}
+            <p class="m-listing__count">{{plural ../pagination.total empty=(t "No issues") singular=(t "1 issue") plural=(t "% issues")}}</p>
+        </header>
+    {{/tag}}
+
+    <section class="m-archive m-wrap">
+        <div class="m-list" data-feed>
+            {{#foreach posts}}{{> "issue-row"}}{{/foreach}}
+        </div>
+        {{> "load-more"}}
+    </section>
+</main>
+
+{{> "signup-cta"}}

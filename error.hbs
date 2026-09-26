@@ -1,0 +1,10 @@
+{{!< default}}
+
+<main class="m-error m-wrap m-wrap--text">
+    <p class="m-error__code">{{statusCode}}</p>
+    <h1 class="m-error__title">
+        {{#match statusCode 404}}{{t "This letter got lost in the mail."}}{{else}}{{message}}{{/match}}
+    </h1>
+    <p class="m-error__text">{{t "The page you were looking for doesn't exist or has moved."}}</p>
+    <a class="m-button" href="{{@site.url}}">{{t "Back to the latest issue"}}</a>
+</main>
